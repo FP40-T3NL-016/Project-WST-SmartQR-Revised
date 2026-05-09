@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - SmartQR Analyzer</title>
+  <link rel="stylesheet" href="../cssFile/globalStyles.css">
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">SmartQR Analyzer</a>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  <ul id="mainMenu">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../pages/dashboard.html">Dashboard</a></li>
+    <li><a href="../pages/scanner.html">Scanner</a></li>
+    <li><a href="../pages/analytics.html">Analytics</a></li>
+    <li><a href="../pages/history.html">History</a></li>
+    <li><a href="../pages/login.html">Login</a></li>
+    <li><a href="../pages/register.html">Register</a></li>
+    <li><button class="tiny-button" onclick="toggleTheme()">Theme</button></li>
+  </ul>
+</nav>
+
+<main class="page auth-page">
+  <section class="auth-layout">
+    <div class="auth-info">
+      <span class="badge">New User Page</span>
+      <h2>Register / Sign Up</h2>
+      <p>This page allows a new user to create a simple account for the SmartQR Analyzer project. It is suitable for a front-end Web Systems and Technology assignment.</p>
+      <ul class="feature-list">
+        <li>Collects full name, email and password.</li>
+        <li>Validates that both password fields match.</li>
+        <li>Saves demo account data in browser localStorage.</li>
+      </ul>
+    </div>
+
+    <form class="form-container auth-form" onsubmit="registerUser(event)">
+      <h3>Create Account</h3>
+      <p>Register to access the dashboard demo.</p>
+
+      <div>
+        <label for="registerName">Full Name</label>
+        <input id="registerName" type="text" placeholder="Enter full name" required>
+      </div>
+
+      <div>
+        <label for="registerEmail">Email Address</label>
+        <input id="registerEmail" type="email" placeholder="example@email.com" required>
+      </div>
+
+      <div>
+        <label for="registerPassword">Password</label>
+        <input id="registerPassword" type="password" placeholder="Create password" required>
+      </div>
+
+      <div>
+        <label for="confirmPassword">Confirm Password</label>
+        <input id="confirmPassword" type="password" placeholder="Confirm password" required>
+      </div>
+
+      <div class="actions">
+        <button type="submit">Register</button>
+        <a class="link-button border-button" href="login.html">Already Registered?</a>
+      </div>
+
+      <p id="registerMessage" class="small-note">Your demo account will be saved locally in this browser.</p>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-container">
+    <div>
+      <h2>SmartQR Analyzer</h2>
+      <p>A browser-based QR reader and data analyzer developed with HTML, external CSS and JavaScript.</p>
+    </div>
+    <div>
+      <h3>Pages</h3>
+      <a href="../index.html">Home</a>
+      <a href="../pages/dashboard.html">Dashboard</a>
+      <a href="../pages/scanner.html">Scanner</a>
+      <a href="../pages/analytics.html">Analytics</a>
+      <a href="../pages/history.html">History</a>
+      <a href="../pages/login.html">Login</a>
+      <a href="../pages/register.html">Register</a>
+    </div>
+    <div>
+      <h3>Features</h3>
+      <p>Camera scan, QR image upload, manual input, record management, category detection, risk suggestion and saved history.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../jsFile/jsFunctions.js"></script>
+</body>
+</html>

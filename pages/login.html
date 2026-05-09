@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - SmartQR Analyzer</title>
+  <link rel="stylesheet" href="../cssFile/globalStyles.css">
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">SmartQR Analyzer</a>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  <ul id="mainMenu">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../pages/dashboard.html">Dashboard</a></li>
+    <li><a href="../pages/scanner.html">Scanner</a></li>
+    <li><a href="../pages/analytics.html">Analytics</a></li>
+    <li><a href="../pages/history.html">History</a></li>
+    <li><a href="../pages/login.html">Login</a></li>
+    <li><a href="../pages/register.html">Register</a></li>
+    <li><button class="tiny-button" onclick="toggleTheme()">Theme</button></li>
+  </ul>
+</nav>
+
+<main class="page auth-page">
+  <section class="auth-layout">
+    <div class="auth-info">
+      <span class="badge">Secure Access Page</span>
+      <h2>Login / Sign In</h2>
+      <p>This page is added as a compulsory requirement of the assignment. It gives users a clean login interface before they access the dashboard.</p>
+      <ul class="feature-list">
+        <li>Checks email and password fields before login.</li>
+        <li>Uses localStorage for simple class-project demo login.</li>
+        <li>Keeps the same visual design as the main website.</li>
+      </ul>
+    </div>
+
+    <form class="form-container auth-form" onsubmit="loginUser(event)">
+      <h3>Welcome Back</h3>
+      <p>Sign in to continue to the SmartQR dashboard.</p>
+
+      <div>
+        <label for="loginEmail">Email Address</label>
+        <input id="loginEmail" type="email" placeholder="example@email.com" required>
+      </div>
+
+      <div>
+        <label for="loginPassword">Password</label>
+        <input id="loginPassword" type="password" placeholder="Enter password" required>
+      </div>
+
+      <div class="actions">
+        <button type="submit">Login</button>
+        <a class="link-button border-button" href="register.html">Create Account</a>
+      </div>
+
+      <p id="loginMessage" class="small-note">Demo tip: register first, then login with the same email and password.</p>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-container">
+    <div>
+      <h2>SmartQR Analyzer</h2>
+      <p>A browser-based QR reader and data analyzer developed with HTML, external CSS and JavaScript.</p>
+    </div>
+    <div>
+      <h3>Pages</h3>
+      <a href="../index.html">Home</a>
+      <a href="../pages/dashboard.html">Dashboard</a>
+      <a href="../pages/scanner.html">Scanner</a>
+      <a href="../pages/analytics.html">Analytics</a>
+      <a href="../pages/history.html">History</a>
+      <a href="../pages/login.html">Login</a>
+      <a href="../pages/register.html">Register</a>
+    </div>
+    <div>
+      <h3>Features</h3>
+      <p>Camera scan, QR image upload, manual input, record management, category detection, risk suggestion and saved history.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../jsFile/jsFunctions.js"></script>
+</body>
+</html>

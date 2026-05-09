@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - SmartQR Analyzer</title>
+  <link rel="stylesheet" href="../cssFile/globalStyles.css">
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">SmartQR Analyzer</a>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  <ul id="mainMenu">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../pages/dashboard.html">Dashboard</a></li>
+    <li><a href="../pages/scanner.html">Scanner</a></li>
+    <li><a href="../pages/analytics.html">Analytics</a></li>
+    <li><a href="../pages/history.html">History</a></li>
+    <li><a href="../pages/login.html">Login</a></li>
+    <li><a href="../pages/register.html">Register</a></li>
+    <li><button class="tiny-button" onclick="toggleTheme()">Theme</button></li>
+  </ul>
+</nav>
+
+<main class="page">
+  <section class="dashboard-header">
+    <div>
+      <span class="badge">Project Control Panel</span>
+      <h2>Dashboard</h2>
+      <p class="notice">This dashboard manages SmartQR records. It includes view, insert, update, delete and graphical summary features required in the assignment brief.</p>
+    </div>
+    <div class="user-panel">
+      <h3 id="dashboardUserName">Guest User</h3>
+      <p id="dashboardUserEmail">Login is optional for demo testing.</p>
+      <a class="link-button sm-button" href="login.html">Sign In</a>
+    </div>
+  </section>
+
+  <section class="stats-row">
+    <div class="stat-box">
+      <strong id="dashboardTotalScans">0</strong>
+      <span>Total QR Records</span>
+    </div>
+    <div class="stat-box">
+      <strong id="dashboardCategories">0</strong>
+      <span>Data Categories</span>
+    </div>
+    <div class="stat-box">
+      <strong id="dashboardRiskCount">0</strong>
+      <span>Medium/High Risk</span>
+    </div>
+    <div class="stat-box">
+      <strong id="dashboardLatestType">None</strong>
+      <span>Latest Record Type</span>
+    </div>
+  </section>
+
+  <section class="card-container dashboard-actions">
+    <article class="card action-card">
+      <div class="card-icon">📋</div>
+      <h3>View All Records</h3>
+      <p>Open the full local scan history table and review saved QR records.</p>
+      <a href="history.html">View Records</a>
+    </article>
+    <article class="card action-card">
+      <div class="card-icon">➕</div>
+      <h3>Insert New Record</h3>
+      <p>Add a QR value manually from the dashboard and store it in history.</p>
+      <a href="#recordManager">Insert Record</a>
+    </article>
+    <article class="card action-card">
+      <div class="card-icon">✏️</div>
+      <h3>Update Record</h3>
+      <p>Select an existing record, edit its value and refresh the analysis.</p>
+      <a href="#recordManager">Update Record</a>
+    </article>
+    <article class="card action-card">
+      <div class="card-icon">🗑️</div>
+      <h3>Delete Record</h3>
+      <p>Remove an unwanted record from the saved local data list.</p>
+      <a href="#recordManager">Delete Record</a>
+    </article>
+    <article class="card action-card">
+      <div class="card-icon">📊</div>
+      <h3>Graphical View</h3>
+      <p>See a simple bar graph summary of QR records by data category.</p>
+      <a href="#graphicalView">View Graph</a>
+    </article>
+    <article class="card action-card">
+      <div class="card-icon">🔍</div>
+      <h3>Scan New QR</h3>
+      <p>Use camera, upload image or manual input to analyze new QR data.</p>
+      <a href="scanner.html">Open Scanner</a>
+    </article>
+  </section>
+
+  <section id="recordManager" class="dashboard-panel">
+    <h3>Quick Record Management</h3>
+    <p>These options work like view, insert, update and delete features for the SmartQR local database records.</p>
+
+    <div class="form-row">
+      <div>
+        <label for="dashboardRecordSelect">Select Existing Record</label>
+        <select id="dashboardRecordSelect" onchange="loadSelectedRecordForEdit()">
+          <option value="">No record selected</option>
+        </select>
+      </div>
+      <div>
+        <label for="dashboardRecordValue">QR Data Value</label>
+        <input id="dashboardRecordValue" type="text" placeholder="Enter QR data, URL, phone number, WiFi string or text">
+      </div>
+    </div>
+
+    <div class="actions">
+      <button onclick="insertDashboardRecord()">Insert New Record</button>
+      <button class="border-button" onclick="updateDashboardRecord()">Update Selected</button>
+      <button class="border-button danger-button" onclick="deleteDashboardRecord()">Delete Selected</button>
+      <a class="link-button border-button" href="history.html">View All Records</a>
+    </div>
+
+    <p id="dashboardNotice" class="small-note">Record messages will appear here.</p>
+  </section>
+
+  <section id="graphicalView" class="dashboard-panel">
+    <h3>Graphical View for QR Database Records</h3>
+    <p>The graph below is generated from records stored in browser localStorage.</p>
+    <div id="dashboardChart" class="bar-chart">
+      <p class="table-empty">No data available for graph.</p>
+    </div>
+  </section>
+
+  <section class="table-container">
+    <h3>Recent Records Preview</h3>
+    <table class="table-bordered" style="min-width:820px; max-width:1100px;">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Category</th>
+          <th>Risk</th>
+          <th>Detected Data</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody id="dashboardRecentBody">
+        <tr>
+          <td colspan="5" class="table-empty">No recent records available.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="table-container">
+    <h3>Dashboard Features Matched with Assignment Requirements</h3>
+    <table class="table-bordered" style="min-width:760px; max-width:1050px;">
+      <thead>
+        <tr>
+          <th>Teacher Requirement</th>
+          <th>Added Feature in This Project</th>
+          <th>Page/Section</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>View all stock</td>
+          <td>View all QR/database records</td>
+          <td>History page and dashboard preview</td>
+        </tr>
+        <tr>
+          <td>Delete stock</td>
+          <td>Delete selected QR record</td>
+          <td>Quick Record Management</td>
+        </tr>
+        <tr>
+          <td>Update stock</td>
+          <td>Update selected QR record</td>
+          <td>Quick Record Management</td>
+        </tr>
+        <tr>
+          <td>Insert new stock</td>
+          <td>Insert new QR/data record</td>
+          <td>Quick Record Management and Scanner</td>
+        </tr>
+        <tr>
+          <td>Graphical view</td>
+          <td>Category-wise bar graph from saved records</td>
+          <td>Graphical View section</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-container">
+    <div>
+      <h2>SmartQR Analyzer</h2>
+      <p>A browser-based QR reader and data analyzer developed with HTML, external CSS and JavaScript.</p>
+    </div>
+    <div>
+      <h3>Pages</h3>
+      <a href="../index.html">Home</a>
+      <a href="../pages/dashboard.html">Dashboard</a>
+      <a href="../pages/scanner.html">Scanner</a>
+      <a href="../pages/analytics.html">Analytics</a>
+      <a href="../pages/history.html">History</a>
+      <a href="../pages/login.html">Login</a>
+      <a href="../pages/register.html">Register</a>
+    </div>
+    <div>
+      <h3>Features</h3>
+      <p>Camera scan, QR image upload, manual input, record management, category detection, risk suggestion and saved history.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../jsFile/jsFunctions.js"></script>
+</body>
+</html>
